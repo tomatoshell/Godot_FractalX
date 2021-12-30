@@ -78,3 +78,13 @@ func _on_Zoom_pressed():
 	sh.set_shader_param("zoom", 1.0)
 	sh.set_shader_param("ofs", Vector2(0,0))
 
+func _on_Inversion_toggled(on):
+	sh.set_shader_param("cinversion",on)
+
+func _on_X_ofst_text_changed(new_text):
+	if new_text.is_valid_float(): sh.set_shader_param("cc",Vector2(float(new_text),sh.get_shader_param("cc").y))
+	elif !new_text.length(): sh.set_shader_param("cc",Vector2(0,sh.get_shader_param("cc").y))
+
+func _on_Y_ofst_text_changed(new_text):
+	if new_text.is_valid_float(): sh.set_shader_param("cc",Vector2(sh.get_shader_param("cc").x,float(new_text)))
+	elif !new_text.length(): sh.set_shader_param("cc",Vector2(sh.get_shader_param("cc").x,0))
